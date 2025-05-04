@@ -18,6 +18,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 
+from django.contrib.auth.hashers import check_password
 
 import random
 
@@ -207,3 +208,31 @@ def reset_password(request):
         return Response({'error': 'No OTP found for this email'}, status=status.HTTP_404_NOT_FOUND)
     except User.DoesNotExist:
         return Response({'error': 'User with this email does not exist'}, status=status.HTTP_404_NOT_FOUND)
+    
+from django.contrib.auth.password_validation import validate_password
+from django.core.exceptions import ValidationError
+
+    
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def change_password(request):
+    current_password = request.data.get('current_password')
+    new_password = request.data.get('new_password')
+
+    if not current_password or not new_password:
+        return Response({'error': 'Current password and new password are required.'}, status=status.HTTP_400_BAD_REQUEST)
+
+    user = request.user
+
+    if not user.check_password(current_password):
+        return Response({'error': 'Current password is incorrect.'}, status=status.HTTP_400_BAD_REQUEST)
+
+    try:
+        validate_password(new_password, user)
+    except ValidationError as e:
+        return Response({'error': e.messages}, status=status.HTTP_400_BAD_REQUEST)
+
+    user.set_password(new_password)
+    user.save()
+
+    return Response({'message': 'Password changed successfully.'}, status=status.HTTP_200_OK)
