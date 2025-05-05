@@ -295,13 +295,17 @@ def submit_form_api(request):
     try:
         data = json.loads(request.body)
         
-        print("Received data:", data)
+        # print("Received data:", data)
         
         generate_ai_form = generate_full_va_form(data)
         print("Generated form:", generate_ai_form)
+        
         # Save the summary to a file or database as needed
         
-        return HttpResponse(json.dumps({"summary": generate_ai_form}), content_type='application/json')
+        summery = generate_notation(data) 
+        
+               
+        return HttpResponse(json.dumps({"notation": summery, "filled_PDF_key_Fields": generate_ai_form}), content_type='application/json')
     except json.JSONDecodeError:
         return HttpResponse(json.dumps({"error": "Invalid JSON data"}), content_type='application/json', status=400)
     

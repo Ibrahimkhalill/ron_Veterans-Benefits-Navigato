@@ -253,14 +253,14 @@ def get_all_plan(request):
 
 # @api_view(['GET'])
 
-def get_all_subscription(request):
+# def get_all_subscription(request):
    
-    # Get or create the user's subscription object
-    subscription = Subscription.objects.all()
-    # Check if the user already has a Stripe customer ID
-    subscription_serializer = SubscriptionSerializer(subscription, many=True)
+#     # Get or create the user's subscription object
+#     subscription = Subscription.objects.all()
+#     # Check if the user already has a Stripe customer ID
+#     subscription_serializer = SubscriptionSerializer(subscription, many=True)
 
-    return Response(subscription_serializer.data, status=200)
+#     return Response(subscription_serializer.data, status=200)
 
 
 def get_invoices_by_subscription(subscription_id):
