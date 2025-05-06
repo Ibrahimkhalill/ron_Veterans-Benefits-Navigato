@@ -122,140 +122,71 @@ def generate_notation(form_data):
 
 
 
-# @csrf_exempt
-# def submit_form_api(request):
-#     if request.method != 'POST':
-#         return HttpResponse("Invalid request method", status=400)
 
-#     try:
-#         data = json.loads(request.body)
-        
-#         print("Received data:", data)
-        
-#         generate_summary_response = generate_summary(data)
-#         print("Generated summary:", generate_summary_response)
-#         # Save the summary to a file or database as needed
-        
-        
-        
+def generate_pdf(data):
+    try:
+        pdf_files = {
+            'VBA-21-526EZ-ARE.pdf': 'VBA-21-526EZ-ARE.pdf',
+            'vba-21-0781-are.pdf': 'vba-21-0781-are.pdf',
+            'vba-21-4138-are.pdf': 'vba-21-4138-are.pdf',
+            'VBA-21-0966-ARE.pdf': 'VBA-21-0966-ARE.pdf'
+        }
 
-#         def get_digits(value):
-#             return value.replace('-', '')
+        # Use VA File Number as identifier since SSN is empty
+        ssn = data.get('VBA-21-526EZ-ARE.pdf', {}).get('VA_File_Number[0]', '123456789')
 
-#         def split_date(value):
-#             return value.split('/') if value else []
+        generated_pdfs = []
 
-#         # Pre-process segmented fields
-#         veteran_ssn = get_digits(data.get('veteran_ssn', ''))
-#         veteran_dob = split_date(data.get('veteran_dob', ''))
-#         mailing_zip = get_digits(data.get('mailing_address_zip', ''))
-#         phone = get_digits(data.get('telephone_number', ''))
+        for pdf_name, data_key in pdf_files.items():
+            field_mapping = data.get(data_key, {})
+            if not field_mapping and pdf_name == 'VBA-21-0966-ARE.pdf':
+                print(f"Skipping {pdf_name}: No data provided")
+                continue
 
-#         claimant_ssn = get_digits(data.get('claimant_ssn', ''))
-#         claimant_dob = split_date(data.get('claimant_dob', ''))
-#         claimant_zip = get_digits(data.get('claimant_mailing_address_zip', ''))
-#         claimant_phone = get_digits(data.get('claimant_telephone_number', ''))
-#         date_signed = split_date(data.get('date_signed', ''))
+            input_pdf = os.path.join(settings.STATICFILES_DIRS[0], 'pdfs', pdf_name)
+            output_filename = f'filled_{ssn}_{pdf_name}'
+            output_pdf = os.path.join(settings.MEDIA_ROOT, output_filename)
 
-#         # Map form fields
-#         field_mapping = {
-#             'Veterans_First_Name[0]': data.get('veteran_first_name', ''),
-#             'Veterans_Last_Name[0]': data.get('veteran_last_name', ''),
-#             'Veterans_Middle_Initial1[0]': data.get('veteran_middle_initial', ''),
-#             'Veterans_Social_SecurityNumber_FirstThreeNumbers[0]': veteran_ssn[:3],
-#             'Veterans_Social_SecurityNumber_SecondTwoNumbers[0]': veteran_ssn[3:5],
-#             'VeteransSocialSecurityNumber_LastFourNumbers[0]': veteran_ssn[5:9],
-#             'DOB_Month[0]': veteran_dob[0] if len(veteran_dob) > 0 else '',
-#             'DOB_Day[0]': veteran_dob[1] if len(veteran_dob) > 1 else '',
-#             'DOB_Year[0]': veteran_dob[2] if len(veteran_dob) > 2 else '',
-#             'VA_File_Number[0]': data.get('va_file_number', ''),
-#             'Veterans_Service_Number[0]': data.get('veteran_service_number', ''),
-#             'Mailing_Address_NumberAndStreet[0]': data.get('mailing_address_number_and_street', ''),
-#             'Mailing_Address_ApartmentOrUnitNumber[0]': data.get('mailing_address_apartment_or_unit', ''),
-#             'Mailing_Address_City[0]': data.get('mailing_address_city', ''),
-#             'Mailing_Address_StateOrProvince[0]': data.get('mailing_address_state', ''),
-#             'Mailing_Address_Country[0]': data.get('mailing_address_country', ''),
-#             'MailingAddress_ZIPOrPostalCode_FirstFiveNumbers[0]': mailing_zip[:5],
-#             'MailingAddress_ZIPOrPostalCode_LastFourNumbers[0]': mailing_zip[5:9],
-#             'Telephone_Number_FirstThreeNumbers[0]': phone[:3],
-#             'Telephone_Number_SecondThreeNumbers[0]': phone[3:6],
-#             'Telephone_Number_LastFourNumbers[0]': phone[6:10],
-#             'International_Phone_Number[0]': data.get('international_phone_number', ''),
-#             'EMAIL_ADDRESS[0]': data.get('email_address', ''),
-#             'COMPENSATION[0]': '/1',
-#             'PENSION[0]': '/1',
-#             'SURVIVORS_PENSION_AND_OR_DEPENDENCY_AND_INDEMNITY_COMPENSATION_DIC[0]': '/1',
-#             # For additional user consent or selections
-#             'CheckBox1[0]': '/1',
-#             'CheckBox1[1]': '/1',
-#             'RadioButtonList[1]': '/5',
-#             'Date_Signed_Month[0]': date_signed[0] if len(date_signed) > 0 else '',
-#             'Date_Signed_Day[0]': date_signed[1] if len(date_signed) > 1 else '',
-#             'Date_Signed_Year[0]': date_signed[2] if len(date_signed) > 2 else '',
-#             'Name_Of_Attorney_Agent_Or_Veterans_Service_Organization_VS[0]': data.get('name_of_attorney_or_vso', ''),
+            if not os.path.exists(input_pdf):
+                print(f"Error: Input PDF {pdf_name} not found")
+                continue
 
-#             # Claimant Fields
-#             'ClaimantsFirstName[0]': data.get('claimant_first_name', ''),
-#             'ClaimantsLastName[0]': data.get('claimant_last_name', ''),
-#             'ClaimantsMiddleInitial1[0]': data.get('claimant_middle_initial', ''),
-#             'ClaimantsSocialSecurityNumber_FirstThreeNumbers[0]': claimant_ssn[:3],
-#             'ClaimantsSocialSecurityNumber_SecondTwoNumbers[0]': claimant_ssn[3:5],
-#             'ClaimantsSocialSecurityNumber_LastFourNumbers[0]': claimant_ssn[5:9],
-#             'DOB_Month[1]': claimant_dob[0] if len(claimant_dob) > 0 else '',
-#             'DOB_Day[1]': claimant_dob[1] if len(claimant_dob) > 1 else '',
-#             'DOB_Year[1]': claimant_dob[2] if len(claimant_dob) > 2 else '',
-#             'VA_File_Number[1]': data.get('claimant_va_file_number', ''),
-#             'RelationshipToVeteranOther_Specify[0]': data.get('relationship_to_veteran', ''),
-#             'Mailing_Address_NumberAndStreet[1]': data.get('claimant_mailing_address_number_and_street', ''),
-#             'Mailing_Address_ApartmentOrUnitNumber[1]': data.get('claimant_mailing_address_apartment_or_unit', ''),
-#             'Mailing_Address_City[1]': data.get('claimant_mailing_address_city', ''),
-#             'Mailing_Address_StateOrProvince[1]': data.get('claimant_mailing_address_state', ''),
-#             'Mailing_Address_Country[1]': data.get('claimant_mailing_address_country', ''),
-#             'MailingAddress_ZIPOrPostalCode_FirstFiveNumbers[1]': claimant_zip[:5],
-#             'MailingAddress_ZIPOrPostalCode_LastFourNumbers[1]': claimant_zip[5:9],
-#             'Telephone_Number_FirstThreeNumbers[1]': claimant_phone[:3],
-#             'Telephone_Number_SecondThreeNumbers[1]': claimant_phone[3:6],
-#             'Telephone_Number_LastFourNumbers[1]': claimant_phone[6:10],
-#             'ClaimantsInternational_Phone_Number[0]': data.get('claimant_international_phone_number', ''),
-#             'ClaimantsEMAIL_ADDRESS[0]': data.get('claimant_email_address', ''),
-            
-#         }
+            reader = PdfReader(input_pdf)
+            writer = PdfWriter()
 
-#         # File paths
-#         input_pdf = os.path.join(settings.STATICFILES_DIRS[0], 'pdfs', 'VBA-21-0966-ARE.pdf')
-#         output_filename = f'filled_{veteran_ssn}.pdf'
-#         output_pdf = os.path.join(settings.MEDIA_ROOT, output_filename)
+            for page in reader.pages:
+                writer.add_page(page)
 
-#         reader = PdfReader(input_pdf)
-#         writer = PdfWriter()
+            if '/AcroForm' in reader.trailer['/Root']:
+                acro_form = reader.trailer['/Root']['/AcroForm']
+                writer._root_object.update({
+                    NameObject('/AcroForm'): writer._add_object(acro_form)
+                })
+                writer._root_object['/AcroForm'].update({
+                    NameObject('/NeedAppearances'): BooleanObject(True)
+                })
 
-#         for page in reader.pages:
-#             writer.add_page(page)
+            for page in writer.pages:
+                writer.update_page_form_field_values(page, field_mapping)
 
-#         # Copy AcroForm + set NeedAppearances
-#         if '/AcroForm' in reader.trailer['/Root']:
-#             acro_form = reader.trailer['/Root']['/AcroForm']
-#             writer._root_object.update({
-#                 NameObject('/AcroForm'): writer._add_object(acro_form)
-#             })
-#             writer._root_object['/AcroForm'].update({
-#                 NameObject('/NeedAppearances'): BooleanObject(True)
-#             })
+            with open(output_pdf, 'wb') as f:
+                writer.write(f)
 
-#         for page in writer.pages:
-#             writer.update_page_form_field_values(page, field_mapping)
+            generated_pdfs.append((output_filename, output_pdf))
 
-#         with open(output_pdf, 'wb') as f:
-#             writer.write(f)
+        if not generated_pdfs:
+            return HttpResponse("Error: No PDFs generated", status=500)
 
-#         with open(output_pdf, 'rb') as f:
-#             response = HttpResponse(f.read(), content_type='application/pdf')
-#             response['Content-Disposition'] = f'attachment; filename="{output_filename}"'
-#             return response
+        # Return the first PDF for testing
+        output_filename, output_pdf = generated_pdfs[0]
+        with open(output_pdf, 'rb') as f:
+            response = HttpResponse(f.read(), content_type='application/pdf')
+            response['Content-Disposition'] = f'attachment; filename="{output_filename}"'
+        return response
 
-#     except Exception as e:
-#         print("Error:", str(e))
-#         return HttpResponse(f"Error: {str(e)}", status=500)
+    except Exception as e:
+        print("Error:", str(e))
+        return HttpResponse(f"Error: {str(e)}", status=500)
 
 
 
@@ -415,6 +346,11 @@ def submit_form_api(request):
         
         generate_ai_form = generate_full_va_form(data)
         print("Generated form:", generate_ai_form)
+        
+        generate_pdf(generate_ai_form)
+        
+        
+        
         
         # Save the summary to a file or database as needed
         

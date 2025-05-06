@@ -1421,3 +1421,40 @@ INFO:django.utils.autoreload:/home/vai/Desktop/ron_Veterans-Benefits-Navigato/ma
 INFO:django.utils.autoreload:/home/vai/Desktop/ron_Veterans-Benefits-Navigato/mainapp/main_brain.py changed, reloading.
 INFO:django.utils.autoreload:/home/vai/Desktop/ron_Veterans-Benefits-Navigato/mainapp/main_brain.py changed, reloading.
 INFO:django.utils.autoreload:/home/vai/Desktop/ron_Veterans-Benefits-Navigato/mainapp/main_brain.py changed, reloading.
+INFO:django.utils.autoreload:/Users/raihanrafi/Development/django/rongever/mainapp/views.py changed, reloading.
+INFO:django.utils.autoreload:/Users/raihanrafi/Development/django/rongever/mainapp/views.py changed, reloading.
+INFO:django.utils.autoreload:/Users/raihanrafi/Development/django/rongever/mainapp/views.py changed, reloading.
+INFO:django.utils.autoreload:/Users/raihanrafi/Development/django/rongever/mainapp/views.py changed, reloading.
+INFO:django.utils.autoreload:/Users/raihanrafi/Development/django/rongever/mainapp/views.py changed, reloading.
+INFO:django.utils.autoreload:/Users/raihanrafi/Development/django/rongever/mainapp/views.py changed, reloading.
+INFO:django.utils.autoreload:/Users/raihanrafi/Development/django/rongever/mainapp/views.py changed, reloading.
+INFO:django.utils.autoreload:/Users/raihanrafi/Development/django/rongever/mainapp/views.py changed, reloading.
+INFO:django.utils.autoreload:/Users/raihanrafi/Development/django/rongever/mainapp/views.py changed, reloading.
+INFO:django.utils.autoreload:/Users/raihanrafi/Development/django/rongever/mainapp/views.py changed, reloading.
+WARNING:django.request:Bad Request: /api/va/vaform/submit/
+ERROR:mainapp.main_brain:Unexpected error: name 'system_prompt' is not defined
+INFO:httpx:HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:django.utils.autoreload:/Users/raihanrafi/Development/django/rongever/mainapp/views.py changed, reloading.
+INFO:django.utils.autoreload:/Users/raihanrafi/Development/django/rongever/mainapp/views.py changed, reloading.
+ERROR:mainapp.main_brain:Unexpected error: name 'system_prompt' is not defined
+WARNING:PyPDF2._writer:No fields to update on this page
+WARNING:PyPDF2._writer:No fields to update on this page
+WARNING:PyPDF2._writer:No fields to update on this page
+WARNING:PyPDF2._writer:No fields to update on this page
+INFO:httpx:HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:django.utils.autoreload:/Users/raihanrafi/Development/django/rongever/mainapp/views.py changed, reloading.
+ERROR:mainapp.main_brain:Unexpected error: name 'system_prompt' is not defined
+WARNING:PyPDF2._writer:No fields to update on this page
+WARNING:PyPDF2._writer:No fields to update on this page
+WARNING:PyPDF2._writer:No fields to update on this page
+WARNING:PyPDF2._writer:No fields to update on this page
+INFO:httpx:HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:django.utils.autoreload:/Users/raihanrafi/Development/django/rongever/mainapp/main_brain.py changed, reloading.
+INFO:django.utils.autoreload:/Users/raihanrafi/Development/django/rongever/mainapp/main_brain.py changed, reloading.
+ERROR:mainapp.main_brain:Unexpected error: 'utf-8' codec can't decode byte 0xab in position 4: invalid start byte
+WARNING:PyPDF2._writer:No fields to update on this page
+WARNING:PyPDF2._writer:No fields to update on this page
+WARNING:PyPDF2._writer:No fields to update on this page
+WARNING:PyPDF2._writer:No fields to update on this page
+INFO:httpx:HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:django.utils.autoreload:/Users/raihanrafi/Development/django/rongever/mainapp/main_brain.py changed, reloading.
