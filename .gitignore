@@ -1,8 +1,82 @@
-.env
-__pycache__
+# Python
 *.pyc
 *.pyo
 *.pyd
-*.db
+__pycache__/
+*.swp
+
+# Django
+*.log
+db.sqlite3
+*.pot
+*.py[co]
 *.sqlite3
-test.ipynb
+*.sqlite3-journal
+
+# Environments
+.env
+soap_env/
+venv/
+env/
+*.env
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Byte-compiled / optimized / DLL files
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Testing
+.coverage
+.tox/
+.nox/
+.pytest_cache/
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+
+# Static files
+staticfiles/
+static/
+
+# Media files
+media/
+
+# Local settings
+local_settings.py
+
+# Celery beat schedule file
+celerybeat-schedule
+
+# Django migrations
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+*.sqlite3-journal
+migrations/
+
