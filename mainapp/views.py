@@ -282,6 +282,111 @@ def generate_notation(form_data):
     
     
     
+dummy_form_data= {
+  "agentOrangeLocations": {
+    "locations": ["Vietnam", "Thailand (U-Tapao Air Base, Nakhon Phanom)"]
+  },
+  "migraine": {
+    "migraineFrequency": "3-4 times per month",
+    "migraineDuration": "2-6 hours",
+    "migraineSymptoms": "Throbbing pain, nausea, sensitivity to light and sound",
+    "migraineImpact": "Inability to work or perform tasks during episodes",
+    "medicalVisitDates": "2025-03-15, 2025-04-10",
+    "details": "Episodes have increased in frequency since deployment"
+  },
+  "verified_email": "dummy.veteran@example.com",
+  "issues": {
+    "CURRENTDISABILITY": ["Prostrating Migraines", "Chronic Sinusitis"]
+  },
+  "gulfWarLocations": {
+    "List_Other_Locations_Where_You_Served": ["Iraq", "Saudi Arabia", "Kuwait"]
+  },
+  "toxinExposure": {
+    "ASBESTOS": [True],
+    "SHAD_Shipboard_Hazard_And_Defense": [False],
+    "Mustard_Gas": [True],
+    "Military_Occupational_Specialty_MOS_Related_Toxin": [True],
+    "Radiation": True,
+    "Contaminated_Water_At_Camp_Lejeune": [True],
+    "Jet_Fuel": True,
+    "Other_Toxins": "Burn pit smoke, diesel exhaust",
+    "Additional_Details": "Heavy exposure during field ops and airfield duty",
+    "OTHER_Specify": ["Lead-based paint", "Solvents", "NO"],
+    "Provide_Additional_Dates_And_Locations_Of_Potential_Exposure": [
+      "2020-04 to 2020-11 – Burn pit exposure near Camp Buehring, Kuwait",
+      "2018-06 to 2018-09 – Radiation exposure while stationed at radar base"
+    ]
+  },
+  "sinusitis_form": {
+    "runnyNose": "YES",
+    "complainedWhileInService": "YES",
+    "exposedToBurnPits": "YES",
+    "symptomsStartDate": "2019-11-01",
+    "symptomsFrequency": "DAILY",
+    "dailyMedication": "YES",
+    "officiallyDiagnosed": "YES",
+    "treatmentProvided": "YES",
+    "details": "Chronic sinus congestion and facial pressure, worsens with dust"
+  },
+  "veteran_information": {
+    "Beginning_Date_Month": ["01"],
+    "Beginning_Date_Day": ["15"],
+    "Beginning_Date_Year": ["2005"],
+    "Ending_Date_Month": ["12"],
+    "Ending_Date_Day": ["20"],
+    "Ending_Date_Year": ["2024"],
+    "Veterans_Beneficiary_First_Name": ["Md."],
+    "Last_Name": ["Ibrahim"],
+    "EMAIL_ADDRESS": ["dummy.veteran@example.com", "ibrahimalt@example.com"],
+    "International_Phone_Number": ["+8801555555555"],
+    "TelephoneNumber_FirstThreeNumbers": ["321"],
+    "TelephoneNumber_SecondThreeNumbers": ["654"],
+    "TelephoneNumber_LastFourNumbers": ["7890"],
+    "DOB_Month": ["12"],
+    "DOB_Day": ["10"],
+    "DOB_Year": ["1990"],
+    "MailingAddress_NumberAndStreet": ["1234 Freedom Blvd"],
+    "MailingAddress_ApartmentOrUnitNumber": ["12B"],
+    "MailingAddress_City": ["San Diego"],
+    "MailingAddress_StateOrProvince": ["CA"],
+    "MailingAddress_Country": ["US"],
+    "MailingAddress_ZIPOrPostalCode_FirstFiveNumbers": ["92101"],
+    "MailingAddress_ZIPOrPostalCode_LastFourNumbers": ["1234"],
+    "branchOfService": "Marine Corps",
+    "serviceUnder": "Yes",
+    "placeOfService": "Camp Pendleton",
+    "nationalGuardReserves": "No",
+    "guardReservesDates": "",
+    "activeDutyOrders": "Yes",
+    "vaDirectDeposit": "Yes",
+    "vaHealthCare": "Yes",
+    "livingSituation": "Living Alone"
+  },
+  "otp": "123456",
+  "conditionDetails": {
+    "Specify_Type_Of_Exposure_Event_Or_Injury": ["Prostrating Migraines", "Chronic Sinusitis"],
+    "ExplainHowDisabilityRelatesToEvent_Exposure_Injury": [
+      "Exposure to intense heat and jet fuel fumes triggered migraine episodes",
+      "Continuous exposure to burn pits and desert dust caused chronic sinus inflammation"
+    ],
+    "StartDate": ["2020-06-10", "2019-11-01"],
+    "Location": [
+      {"left": False, "right": False, "both": True},
+      {"left": False, "right": False, "both": True}
+    ]
+  },
+  "document": {
+    "discharge_condition": {
+      "type": "Honorable",
+      "date": "2024-12-20"
+    },
+    "evidenceData": {
+      "uploadedMedicalRecords": True,
+      "supportingBuddyStatements": True,
+      "serviceTreatmentRecords": True
+    }
+  }
+}
 
     
     
@@ -294,14 +399,29 @@ def submit_form_api(request):
 
     try:
         data = json.loads(request.body)
+        # print("Received data:", data)
         
-        print("Received data:", data)
+        # dummy_data = json.dumps(dummy_form_data)
+        # print("Dummy data:", dummy_data)
+        
+        # Simulate request.body as bytes
+        request_body_sim = json.dumps(dummy_form_data).encode('utf-8')
+
+        # Emulate receiving and decoding the request
+        data = json.loads(request_body_sim)
+        # print("Received data:", data)
+        
+        # print("Received data:", data)
         
         generate_ai_form = generate_full_va_form(data)
         print("Generated form:", generate_ai_form)
+        
         # Save the summary to a file or database as needed
         
-        return HttpResponse(json.dumps({"summary": generate_ai_form}), content_type='application/json')
+        summery = generate_notation(data) 
+        
+               
+        return HttpResponse(json.dumps({"notation": summery, "AI_filled_VA_PDF_Fields": generate_ai_form}), content_type='application/json')
     except json.JSONDecodeError:
         return HttpResponse(json.dumps({"error": "Invalid JSON data"}), content_type='application/json', status=400)
     
