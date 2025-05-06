@@ -1421,40 +1421,252 @@ INFO:django.utils.autoreload:/home/vai/Desktop/ron_Veterans-Benefits-Navigato/ma
 INFO:django.utils.autoreload:/home/vai/Desktop/ron_Veterans-Benefits-Navigato/mainapp/main_brain.py changed, reloading.
 INFO:django.utils.autoreload:/home/vai/Desktop/ron_Veterans-Benefits-Navigato/mainapp/main_brain.py changed, reloading.
 INFO:django.utils.autoreload:/home/vai/Desktop/ron_Veterans-Benefits-Navigato/mainapp/main_brain.py changed, reloading.
-INFO:django.utils.autoreload:/Users/raihanrafi/Development/django/rongever/mainapp/views.py changed, reloading.
-INFO:django.utils.autoreload:/Users/raihanrafi/Development/django/rongever/mainapp/views.py changed, reloading.
-INFO:django.utils.autoreload:/Users/raihanrafi/Development/django/rongever/mainapp/views.py changed, reloading.
-INFO:django.utils.autoreload:/Users/raihanrafi/Development/django/rongever/mainapp/views.py changed, reloading.
-INFO:django.utils.autoreload:/Users/raihanrafi/Development/django/rongever/mainapp/views.py changed, reloading.
-INFO:django.utils.autoreload:/Users/raihanrafi/Development/django/rongever/mainapp/views.py changed, reloading.
-INFO:django.utils.autoreload:/Users/raihanrafi/Development/django/rongever/mainapp/views.py changed, reloading.
-INFO:django.utils.autoreload:/Users/raihanrafi/Development/django/rongever/mainapp/views.py changed, reloading.
-INFO:django.utils.autoreload:/Users/raihanrafi/Development/django/rongever/mainapp/views.py changed, reloading.
-INFO:django.utils.autoreload:/Users/raihanrafi/Development/django/rongever/mainapp/views.py changed, reloading.
-WARNING:django.request:Bad Request: /api/va/vaform/submit/
-ERROR:mainapp.main_brain:Unexpected error: name 'system_prompt' is not defined
+INFO:django.utils.autoreload:/home/vai/Desktop/ron_Veterans-Benefits-Navigato/mainapp/main_brain.py changed, reloading.
 INFO:httpx:HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-INFO:django.utils.autoreload:/Users/raihanrafi/Development/django/rongever/mainapp/views.py changed, reloading.
-INFO:django.utils.autoreload:/Users/raihanrafi/Development/django/rongever/mainapp/views.py changed, reloading.
-ERROR:mainapp.main_brain:Unexpected error: name 'system_prompt' is not defined
-WARNING:PyPDF2._writer:No fields to update on this page
-WARNING:PyPDF2._writer:No fields to update on this page
-WARNING:PyPDF2._writer:No fields to update on this page
-WARNING:PyPDF2._writer:No fields to update on this page
+INFO:mainapp.main_brain:Raw OpenAI response: {
+  "vba-21-0781-are.pdf": {
+    "Veterans_Service_Members_First_Name[0]": "Md.",
+    "VAFileNumber[0]": "No Value",
+    "VeteransLastName[0]": "Ibrahim",
+    "VeteransMiddleInitial1[0]": "No Value",
+    "VeteransServiceNumber[0]": "No Value",
+    "International_Telephone_Number_If_Applicable[0]": "+8801555555555",
+    "Month[0]": "No Value",
+    "Day[0]": "No Value",
+    "Year[0]": "No Value",
+    "FirstThreeNumbers[0]": "321",
+    "LastFourNumbers[0]": "7890",
+    "AreaCode[0]": "No Value",
+    "Combat_Traumatic_Events[0]": "No Value",
+    "Personal_Traumatic_Events_Not_Involving_Military_Sexual_Trauma[0]": "No Value",
+    "Personal_Traumatic_Events_Involving_Military_Sexual_Trauma[0]": "No Value",
+    "Other_Traumatic_Events[0]": "No Value",
+    "Brief_Description_Of_The_Traumatic_Events[0]": "No Value",
+    "Location_Of_The_Traumatic_Events[0]": "No Value",
+    "Dates_The_Traumatic_Events_Occured[0]": "No Value",
+    "E_Mail_Address_Optional[0]": "dummy.veteran@example.com",
+    "Increased_Decreased_Visits_To_A_Healthcare_Professional_Counselor_Or_Treatment_Facility[0]": "No Value",
+    "Request_For_A_Change_In_Occupational_Series_Or_Duty_Assignment[0]": "No Value",
+    "Increased_Decreased_Use_Of_Leave[0]": "No Value",
+    "Changes_In_Performance_Or_Performance_Evaluations[0]": "No Value",
+    "Episodes_Of_Depression_Panic_Attacks_Or_Anxiety[0]": "No Value",
+    "Increased_Decreased_Use_Of_Prescription_Medications[0]": "No Value",
+    "Increased_Decreased_Use_Of_Over_The_Counter_Medications[0]": "No Value",
+    "Increased_Decreased_Use_Of_Alcohol_Or_Drugs[0]": "No Value",
+    "Disciplinary_Or_Legal_Difficulties[0]": "No Value",
+    "Changes_In_Eating_Habits_Such_As_Overeating_Or_Undereating_Or_Significant_Changes_In_Weight[0]": "No Value",
+    "Additional_Information_About_Behavioral_Changes[0]": "No Value",
+    "Police_Report_Location_If_Known[0]": "No Value",
+    "Other_Report[0]": "No Value",
+    "A_Rape_Crisis_Center_Or_Center_For_Domestic_Abuse[0]": "No Value",
+    "A_Counseling_Facility_Or_Health_Clinic[0]": "No Value",
+    "Family_Member_Or_Roomates[0]": "No Value",
+    "A_Faculty_Member[0]": "No Value",
+    "Civilian_Police_Reports[0]": "No Value",
+    "Medical_Reports_From_Civilian_Physicians_Or_Caregivers_Who_Treated_You_Immediately_Following_The_Incident_Or_Sometime_Later[0]": "No Value",
+    "A_Chaplain_Or_Clergy[0]": "No Value",
+    "Fellow_Service_Members[0]": "No Value",
+    "Personal_Diaries_Or_Journals[0]": "No Value",
+    "Combat_Traumatic_Events[1]": "No Value",
+    "Other_Specify_Below[0]": "No Value",
+    "Other_Report[1]": "No Value",
+    "Private_Healthcare_Provider[0]": "No Value",
+    "VA_Vet_Center[0]": "No Value",
+    "Community_Care_Paid_For_By_VA[0]": "No Value",
+    "VA_Medical_Center_And_Community_Based_Outpatient_Clinics[0]": "No Value",
+    "Department_Of_Defense_Military_Treatment_Facilities[0]": "No Value",
+    "Check_Box_Do_Not_Have_Date_s[0]": "No Value",
+    "Date_Of_Treatment_Year[0]": "No Value",
+    "Date_Of_Treatment_Month[0]": "No Value",
+    "Name_And_Location_Of_Treatment_Facility[0]": "No Value",
+    "I_Consent_To_Have_VBA_Notify_VHA_About_Certain_Upcoming_Events_Related_To_My_Claim_And_Or_Appeal[0]": "No Value",
+    "I_Do_Not_Consent_To_Have_VBA_Notify_VHA_About_Certain_Upcoming_Events_Related_To_My_Claim_And_Or_Appeal[0]": "No Value",
+    "I_Revoke_Prior_Consent_To_Have_VBA_Notify_VHA_About_Certain_Upcoming_Events_Related_To_My_Claim_And_Or_Appeal[0]": "No Value",
+    "Not_Applicable_And_Or_Not_Enrolled_In_VHA_Healthcare[0]": "No Value",
+    "Date_Signed_Month[0]": "No Value",
+    "Date_Signed_Day[0]": "No Value",
+    "Date_Signed_Year[0]": "No Value",
+    "Digital_Signature[0]": "No Value",
+    "Printed_Name_And_Address_Of_Witness[0]": "No Value",
+    "Date_Signed_Month[1]": "No Value",
+    "Date_Signed_Day[1]": "No Value",
+    "Date_Signed_Year[1]": "No Value",
+    "Digital_Signature[1]": "No Value",
+    "Date_Last_VAF_21_22_Or_21_22A_Submitted_Month[0]": "No Value",
+    "Date_Day[0]": "No Value",
+    "Date_Year[0]": "No Value",
+    "Accreditation_Number[0]": "No Value"
+  },
+  "vba-21-4138-are.pdf": {
+    "TelephoneNumber_LastFourNumbers[0]": "7890",
+    "TelephoneNumber_FirstThreeNumbers[0]": "321",
+    "TelephoneNumber_SecondThreeNumbers[0]": "654",
+    "International_Phone_Number[0]": "+8801555555555",
+    "EMAIL_ADDRESS[0]": "dummy.veteran@example.com",
+    "EMAIL_ADDRESS[1]": "ibrahimalt@example.com",
+    "Last_Name[0]": "Ibrahim",
+    "Middle_Initial1[0]": "No Value",
+    "Veterans_Beneficiary_First_Name[0]": "Md.",
+    "VA_File_Number_If_Applicable[0]": "No Value",
+    "DOB_Year[0]": "1990",
+    "DOB_Day[0]": "10",
+    "Veterans_DOB_Month[0]": "12",
+    "Veterans_Service_Number_If_Applicable[0]": "No Value",
+    "MailingAddress_ZIPOrPostalCode_LastFourNumbers[0]": "1234",
+    "MailingAddress_ZIPOrPostalCode_FirstFiveNumbers[0]": "92101",
+    "MailingAddress_Country[0]": "US",
+    "MailingAddress_StateOrProvince[0]": "CA",
+    "MailingAddress_City[0]": "San Diego",
+    "MailingAddress_ApartmentOrUnitNumber[0]": "12B",
+    "MailingAddress_NumberAndStreet[0]": "1234 Freedom Blvd",
+    "REMARKS[0]": "Veteran reports chronic sinusitis and prostrating migraines, likely related to toxin exposure during service.",
+    "Digital_Signature[0]": "No Value",
+    "Date_Signed_Year[0]": "No Value",
+    "Date_Signed_Month[0]": "No Value",
+    "Date_Signed_Day[0]": "No Value",
+    "SocialSecurityNumber_LastFourNumbers[1]": "No Value",
+    "SocialSecurityNumber_SecondTwoNumbers[1]": "No Value",
+    "SocialSecurityNumber_FirstThreeNumbers[1]": "No Value",
+    "REMARKS[1]": "Additional medical records and buddy statements are available to support the claim."
+  },
+  "VBA-21-526EZ-ARE.pdf": {
+    "VA_File_Number[0]": "No Value",
+    "Email_Address_Optional[0]": "dummy.veteran@example.com",
+    "Veteran_Service_Member_First_Name[0]": "Md.",
+    "Veteran_Service_Member_Last_Name[0]": "Ibrahim",
+    "Veteran_Service_Member_Middle_Initial[0]": "No Value",
+    "Date_Of_Birth_Month[0]": "12",
+    "Date_Of_Birth_Day[0]": "10",
+    "Date_Of_Birth_Year[0]": "1990",
+    "CurrentMailingAddress_NumberAndStreet[0]": "1234 Freedom Blvd",
+    "CurrentMailingAddress_ApartmentOrUnitNumber[0]": "12B",
+    "CurrentMailingAddress_City[0]": "San Diego",
+    "CurrentMailingAddress_StateOrProvince[0]": "CA",
+    "CurrentMailingAddress_Country[0]": "US",
+    "CurrentMailingAddress_ZIPOrPostalCode_FirstFiveNumbers[0]": "92101",
+    "CurrentMailingAddress_ZIPOrPostalCode_LastFourNumbers[0]": "1234",
+    "Veterans_Service_Number_If_Applicable[0]": "No Value",
+    "Beginning_Date_Month[0]": "01",
+    "Beginning_Date_Day[0]": "15",
+    "Beginning_Date_Year[0]": "2005",
+    "Ending_Date_Month[0]": "12",
+    "Ending_Date_Day[0]": "20",
+    "Ending_Date_Year[0]": "2024",
+    "Daytime_Phone_Number_Area_Code[0]": "321",
+    "Telephone_Middle_Three_Numbers[0]": "654",
+    "Telephone_Last_Four_Numbers[0]": "7890",
+    "FULLY_DEVELOPED_CLAIM_FDC_PROGRAM[0]": "Selected",
+    "International_Telephone_Number_If_Applicable[0]": "+8801555555555",
+    "List_Other_Locations_Where_You_Served[0]": "Iraq, Saudi Arabia, Kuwait",
+    "ASBESTOS[0]": "Selected",
+    "SHAD_Shipboard_Hazard_And_Defense[0]": "Unselected",
+    "Contaminated_Water_At_Camp_Lejeune[0]": "Selected",
+    "Mustard_Gas[0]": "Selected",
+    "Military_Occupational_Specialty_MOS_Related_Toxin[0]": "Selected",
+    "Radiation[0]": "Selected",
+    "Provide_Additional_Dates_And_Locations_Of_Potential_Exposure[0]": "2020-04 to 2020-11 – Burn pit exposure near Camp Buehring, Kuwait, 2018-06 to 2018-09 – Radiation exposure while stationed at radar base",
+    "CURRENTDISABILITY[0]": "Prostrating Migraines",
+    "CURRENTDISABILITY[1]": "Chronic Sinusitis",
+    "Specify_Type_Of_Exposure_Event_Or_Injury[0]": "Prostrating Migraines",
+    "Specify_Type_Of_Exposure_Event_Or_Injury[1]": "Chronic Sinusitis",
+    "ExplainHowDisabilityRelatesToEvent_Exposure_Injury[0]": "Exposure to intense heat and jet fuel fumes triggered migraine episodes",
+    "ExplainHowDisabilityRelatesToEvent_Exposure_Injury[1]": "Continuous exposure to burn pits and desert dust caused chronic sinus inflammation",
+    "Date_Disability_Began_Or_Worsened[0]": "2020-06-10",
+    "Date_Disability_Began_Or_Worsened[1]": "2019-11-01"
+  },
+  "VBA-21-0966-ARE.pdf": {
+    "DOB_Month[0]": "12",
+    "DOB_Day[0]": "10",
+    "DOB_Year[0]": "1990",
+    "VA_File_Number[0]": "No Value",
+    "Mailing_Address_NumberAndStreet[0]": "1234 Freedom Blvd",
+    "Mailing_Address_ApartmentOrUnitNumber[0]": "12B",
+    "MailingAddress_City[0]": "San Diego",
+    "MailingAddress_StateOrProvince[0]": "CA",
+    "MailingAddress_Country[0]": "US",
+    "MailingAddress_ZIPOrPostalCode_FirstFiveNumbers[0]": "92101",
+    "MailingAddress_ZIPOrPostalCode_LastFourNumbers[0]": "1234",
+    "Veterans_First_Name[0]": "Md.",
+    "Veterans_Last_Name[0]": "Ibrahim",
+    "Veterans_Middle_Initial1[0]": "No Value",
+    "Veterans_Service_Number[0]": "No Value",
+    "International_Phone_Number[0]": "+8801555555555",
+    "Telephone_Number_LastFourNumbers[0]": "7890",
+    "Telephone_Number_SecondThreeNumbers[0]": "654",
+    "Telephone_Number_FirstThreeNumbers[0]": "321",
+    "EMAIL_ADDRESS[0]": "dummy.veteran@example.com",
+    "EMAIL_ADDRESS[1]": "ibrahimalt@example.com",
+    "CheckBox1[0]": "Selected",
+    "ClaimantsLastName[0]": "No Value",
+    "ClaimantsMiddleInitial1[0]": "No Value",
+    "ClaimantsFirstName[0]": "No Value",
+    "ClaimantsSocialSecurityNumber_LastFourNumbers[0]": "No Value",
+    "ClaimantsSocialSecurityNumber_SecondTwoNumbers[0]": "No Value",
+    "ClaimantsSocialSecurityNumber_FirstThreeNumbers[0]": "No Value",
+    "RadioButtonList[0]": "No Value",
+    "VA_File_Number[1]": "No Value",
+    "RadioButtonList[1]": "No Value",
+    "RelationshipToVeteranOther_Specify[0]": "No Value",
+    "Mailing_Address_ZIPOrPostalCode_LastFourNumbers[0]": "1234",
+    "Mailing_Address_ZIPOrPostalCode_FirstFiveNumbers[0]": "92101",
+    "Mailing_Address_Country[0]": "US",
+    "Mailing_Address_StateOrProvince[0]": "CA",
+    "Mailing_Address_City[0]": "San Diego",
+    "Mailing_Address_ApartmentOrUnitNumber[1]": "12B",
+    "Mailing_Address_NumberAndStreet[1]": "1234 Freedom Blvd",
+    "ClaimantsInternational_Phone_Number[0]": "No Value",
+    "Telephone_Number_LastFourNumbers[1]": "No Value",
+    "Telephone_Number_SecondThreeNumbers[1]": "No Value",
+    "Telephone_Number_FirstThreeNumbers[1]": "No Value",
+    "ClaimantsEMAIL_ADDRESS[0]": "No Value",
+    "ClaimantsEMAIL_ADDRESS[1]": "No Value",
+    "CheckBox1[1]": "No Value",
+    "DOB_Month[1]": "No Value",
+    "DOB_Day[1]": "No Value",
+    "DOB_Year[1]": "No Value",
+    "RadioButtonList[2]": "No Value",
+    "PENSION[0]": "No Value",
+    "COMPENSATION[0]": "Selected",
+    "SURVIVORS_PENSION_AND_OR_DEPENDENCY_AND_INDEMNITY_COMPENSATION_DIC[0]": "No Value",
+    "Date_Signed_Year[0]": "No Value",
+    "Date_Signed_Day[0]": "No Value",
+    "Date_Signed_Month[0]": "No Value",
+    "Name_Of_Attorney_Agent_Or_Veterans_Service_Organization_VS[0]": "No Value",
+    "Digital_Signature[0]": "No Value"
+  }
+}
+INFO:mainapp.main_brain:Fallback sanitized response: {
+  "vba-21-0781-are.pdf": {
+    "Veterans_Service_Members_First_Name[0]": "Md.",
+    "VAFileNumber[0]": "No Value",
+    "VeteransLastName[0]": "Ibrahim",
+    "VeteransMiddleInitial1[0]": "No Value",
+    "VeteransServiceNumber[0]": "No Value",
+    "International_Telephone_Number_If_Applicable[0]": "+8801555555555",
+    "Month[0]": "No Value",
+    "Day[0]": "No Value",
+    "Year[0]": "No Value",
+    "FirstThreeNumbers[0]": "321",
+    "LastFourNumbers[0]": "7890",
+    "AreaCode[0]": "No Value",
+  
+INFO:mainapp.main_brain:Parsed JSON: {
+  "vba-21-0781-are.pdf": {
+    "Veterans_Service_Members_First_Name[0]": "Md.",
+    "VAFileNumber[0]": "No Value",
+    "VeteransLastName[0]": "Ibrahim",
+    "VeteransMiddleInitial1[0]": "No Value",
+    "VeteransServiceNumber[0]": "No Value",
+    "International_Telephone_Number_If_Applicable[0]": "+8801555555555",
+    "Month[0]": "No Value",
+    "Day[0]": "No Value",
+    "Year[0]": "No Value",
+    "FirstThreeNumbers[0]": "321",
+    "LastFourNumbers[0]": "7890",
+    "AreaCode[0]": "No Value",
+  
+INFO:mainapp.main_brain:Validation for vba-21-0781-are.pdf: Filled=126 fields, Missing=120 fields
+INFO:mainapp.main_brain:Validation for vba-21-4138-are.pdf: Filled=33 fields, Missing=13 fields
+INFO:mainapp.main_brain:Validation for VBA-21-526EZ-ARE.pdf: Filled=160 fields, Missing=121 fields
+INFO:mainapp.main_brain:Validation for VBA-21-0966-ARE.pdf: Filled=61 fields, Missing=34 fields
 INFO:httpx:HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-INFO:django.utils.autoreload:/Users/raihanrafi/Development/django/rongever/mainapp/views.py changed, reloading.
-ERROR:mainapp.main_brain:Unexpected error: name 'system_prompt' is not defined
-WARNING:PyPDF2._writer:No fields to update on this page
-WARNING:PyPDF2._writer:No fields to update on this page
-WARNING:PyPDF2._writer:No fields to update on this page
-WARNING:PyPDF2._writer:No fields to update on this page
-INFO:httpx:HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-INFO:django.utils.autoreload:/Users/raihanrafi/Development/django/rongever/mainapp/main_brain.py changed, reloading.
-INFO:django.utils.autoreload:/Users/raihanrafi/Development/django/rongever/mainapp/main_brain.py changed, reloading.
-ERROR:mainapp.main_brain:Unexpected error: 'utf-8' codec can't decode byte 0xab in position 4: invalid start byte
-WARNING:PyPDF2._writer:No fields to update on this page
-WARNING:PyPDF2._writer:No fields to update on this page
-WARNING:PyPDF2._writer:No fields to update on this page
-WARNING:PyPDF2._writer:No fields to update on this page
-INFO:httpx:HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-INFO:django.utils.autoreload:/Users/raihanrafi/Development/django/rongever/mainapp/main_brain.py changed, reloading.
