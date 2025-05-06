@@ -10,6 +10,8 @@ client = OpenAI(api_key=os.getenv("OPENAI_SUMMARY_API_KEY"))
 
 import base64
 import json
+import re
+import os
 
 
 # # Obfuscated prompt fragments (base64 + hex + reversed)
@@ -150,42 +152,76 @@ def generate_full_va_form(form_data):
     try:
 
         prompt = f"""
-            The templates include: {', '.join(FORM_TEMPLATES.keys())}. 
-            Replace "No Value" with values from the input data where available. 
-            Combine related fields when appropriate (e.g., SSN parts into a full SSN, but preserve individual SSN fields if specified in the template). 
-            If no data is provided for a field, retain a generated value or infer reasonable defaults where applicable, ensuring compliance with VA form requirements.
-            Do not invent data unless explicitly provided in the input. Do not modify, normalize, or change the case of field names (e.g., 'VeteransLastName' must remain 'VeteransLastName', not 'veteran_last_name').
-            
-            focusing on creating detailed, VA-compliant notations for the REMARKS fields (REMARKS[0], REMARKS[1]). Follow these instructions precisely:
-
-            1. **REMARKS Fields**:
-            - **REMARKS[0]**: Summarize the veteran's medical conditions (e.g., migraines, tinnitus, sinusitis) using data from 'migraine', 'tinnitus_hearing_loss', 'sinusitis_form', and 'conditionDetails'. Include details on onset (e.g., StartDate), symptoms, frequency, impact, and any relevant medical history. Ensure the notation is concise, professional, and compliant with VA form requirements.
-            - **REMARKS[1]**: Summarize service-related exposures using data from 'toxinExposure', 'agentOrangeLocations', and 'gulfWarLocations'. Describe potential links to the veteran's conditions, including specific toxins (e.g., mustard gas, contaminated water), locations, and exposure events. Ensure the notation is detailed and VA-compliant.
-
-            2. **Non-REMARKS Fields (#subform[0], #subform[1], form1[0])**:
-            - If the field is directly provided in the input data and matches the template exactly, use that value.
-            - If no data is provided, generate a reasonable default:
-                - For name-related fields, use a generic name like "John Doe".
-                - For other fields (e.g., #subform[0], #subform[1], form1[0]), use "N/A" to indicate not applicable or unavailable.
-
-            
-            # Use relevant input data (example: 'migraine.details', 'tinnitus_hearing_loss.details', 'sinusitis_form.details', 'conditionDetails.ExplainHowDisabilityRelatesToEvent_Exposure_Injury') to create comprehensive notations for REMARKS[0] and REMARKS[1]. 
-            # For REMARKS[0], focus on summarizing conditions like migraines, tinnitus, and sinusitis, including onset, symptoms, and impact. 
-            # For REMARKS[1], detail service-related exposures (example: toxinExposure, agentOrangeLocations, gulfWarLocations) and their potential link to the conditions.  
-
             Template Field Names (for reference, do not alter):
             {json.dumps({k: list(v.keys()) for k, v in FORM_TEMPLATES.items()}, indent=2)}
 
-            Input Data:
+            User Inputed Data:
             {processed_data}
+"""
 
-            Return a JSON object where each key is a form name (e.g., 'vba-21-4138-are.pdf') and the value is the completed JSON with the EXACT structure and field names of that form's template:"""
+
+
+        system_prompt ="""
+You are an AI assistant tasked with filling out veteran affairs forms based on provided input data. The input data is structured as a dictionary with sections such as `'veteran_information'`, `'issues'`, `'conditionDetails'`, `'toxinExposure'`, `'agentOrangeLocations'`, `'gulfWarLocations'`, `'migraine'`, `'sinusitis_form'`, and others. Your goal is to map the values from these sections to the appropriate fields in the specified VA forms (e.g., `vba-21-0781-are.pdf`, `vba-21-4138-are.pdf`, `VBA-21-526EZ-ARE.pdf`, `VBA-21-0966-ARE.pdf`) accurately and comprehensively, ensuring that as many fields as possible are filled with relevant data from the input, reducing the occurrence of "No Value" entries. Follow these steps for each form:
+
+ 1: Identify the Form Type
+- Recognize the specific VA form being filled (e.g., `21-526EZ` for disability compensation, `21-0781` for PTSD, `21-4138` for statements in support of claim, `21-0966` for intent to file).
+- Tailor the mapping process based on the form’s purpose and field requirements.
+
+ 2: Determine Relevant Input Sections
+- Match input data sections to the form’s context. Use the following guidelines:
+  - **Personal Information** (all forms): Use `'veteran_information'` for fields like name, address, date of birth, phone number, email, etc.
+  - **Disability Claims** (e.g., `21-526EZ`): Use `'issues'`, `'conditionDetails'`, `'migraine'`, `'sinusitis_form'` for disability names, descriptions, start dates, and treatment details.
+  - **Exposure Information** (e.g., `21-526EZ`, `21-0781`): Use `'toxinExposure'`, `'agentOrangeLocations'`, `'gulfWarLocations'` for exposure types, locations, and dates.
+  - **Medical Conditions** (e.g., `21-526EZ`): Use `'migraine'`, `'sinusitis_form'` for symptoms, frequency, and treatment history.
+  - **Service Details** (e.g., `21-526EZ`): Use `'veteran_information'` for service dates, branch, and location.
+  - **General Remarks** (e.g., `21-4138`): Summarize relevant details from multiple sections if specific fields are unavailable.
+
+ 3: Map Input Values to Form Fields
+- For each field in the form:
+  - **Direct Mapping**: Search the input data for an exact or near-exact match based on key names or context. Examples:
+    - `'Veterans_Beneficiary_First_Name'` → `Veterans_Service_Members_First_Name[0]` or `Veterans_First_Name[0]`
+    - `'Last_Name'` → `VeteransLastName[0]` or `Veteran_Service_Member_Last_Name[0]`
+    - `'DOB_Month'`, `'DOB_Day'`, `'DOB_Year'` → Combine into `Date_Of_Birth_Month[0]`, `Date_Of_Birth_Day[0]`, `Date_Of_Birth_Year[0]`
+    - `'CURRENTDISABILITY'` → `CURRENTDISABILITY[0]`, `CURRENTDISABILITY[1]`, etc., for multiple entries
+    - `'agentOrangeLocations'` → `List_Other_Locations_Where_You_Served[0]` or exposure-related fields
+  - **Semantic Mapping**: If no direct match exists, infer the field based on meaning:
+    - `'migraineFrequency'` and `'migraineSymptoms'` → Fields like `ExplainHowDisabilityRelatesToEvent_Exposure_Injury[0]`
+    - `'toxinExposure'` (e.g., `ASBESTOS: [True]`) → `ASBESTOS[0]` or related exposure checkboxes
+  - **Multiple Instances**: Handle fields with indices (e.g., `[0]`, `[1]`) by mapping list items from the input sequentially.
+
+ 4: Infer Values When Necessary
+- If a direct match isn’t available but related data exists:
+  - Combine related fields (e.g., `'Beginning_Date_Month'`, `'Beginning_Date_Day'`, `'Beginning_Date_Year'` into a full date for `From_Date_Month[0]`, etc.).
+  - Use context to fill narrative fields (e.g., `'details'` from `'sinusitis_form'` or `'migraine'` into `REMARKS[0]` or `Additional_Details`).
+  - For yes/no fields, interpret input values like `'YES'` or `True` as "Selected" and `'NO'` or `False` as unselected.
+
+ 5: Handle Missing Data
+- If no matching or inferable data exists for a field:
+  - Set it to `"No Value"`.
+  - Optionally, append a note in a remarks field (e.g., `REMARKS[2]`) stating, "Additional information may be required for [field name]."
+
+ 6: Format and Validate Output
+- Ensure values match the field’s expected format (e.g., dates as `MM/DD/YYYY`, checkboxes as `"Selected"` or unselected).
+- Preserve the output structure (form names with nested field-value pairs) as shown in the provided example.
+- Handle multiple instances of fields (e.g., multiple exposure locations or disabilities) by incrementing indices appropriately.
+
+Additional Instructions
+- **Maximize Data Usage**: Exhaustively search all input sections to avoid missing relevant data. For example, use `'veteran_information'` for address fields across all forms, not just remarks.
+- **Avoid Overgeneralization**: Do not fill fields with generic summaries unless explicitly mapped; prefer specific mappings where possible.
+- **Consistency**: Apply the same mapping logic across all forms for shared fields (e.g., name, SSN, address).
+
+Output
+- Return the filled form data in a JSON-like structure, with each form name as a key and its fields as nested key-value pairs, mirroring the provided output format.
+
+Your primary objective is to reduce "No Value" entries by accurately and intelligently mapping the input data to the form fields, using both direct matches and reasonable inferences based on the context of each form."""
+
 
         # Call OpenAI API
         response = client.chat.completions.create(
-            model="gpt-4",
+            model="gpt-4-turbo",
             messages=[
-                {"role": "system", "content": "You are a VA form processing expert. Strictly follow the template structure and VA form requirements, preserving EXACT field names."},
+                {"role": "system", "content": system_prompt},
                 {"role": "user", "content": prompt}
             ],
             # temperature=0.1,
@@ -194,12 +230,18 @@ def generate_full_va_form(form_data):
 
         # Sanitize and parse response
         raw_response = response.choices[0].message.content.strip()
+
         print(f"Raw OpenAI response: {raw_response}")  # Debugging line
-        
-        if raw_response.startswith("```json"):
-            raw_response = raw_response[7:-3].strip()
-        elif raw_response.startswith("```"):
-            raw_response = raw_response.strip()
+
+        # Use regex to extract JSON content between ```json and ```
+        json_match = re.search(r'```json\s*([\s\S]*?)\s*```', raw_response, re.MULTILINE)
+        if json_match:
+            raw_response = json_match.group(1).strip()
+        else:
+            # Fallback: Remove any leading/trailing backticks or preamble
+            raw_response = raw_response.strip('```').strip()
+            if raw_response.startswith('Below is the formatted output'):
+                raw_response = raw_response.split('```json', 1)[-1].strip('```').strip()
 
         try:
             result = json.loads(raw_response)
@@ -209,34 +251,3 @@ def generate_full_va_form(form_data):
                 "key_missing": {},
                 "error": f"Failed to parse OpenAI response: {str(e)}. Raw response: {raw_response[:500]}..."
             }
-
-        # Initialize output dictionaries
-        output = {
-            "result_filled": {},
-            "key_missing": {}
-        }
-
-        # Validate response
-        # if form_name:
-        #     validation_result = validate_response(result, form_template, form_name)
-        #     output["result_filled"] = validation_result["result_filled"]
-        #     output["key_missing"] = {form_name: validation_result["key_missing"]}
-        # else:
-        if isinstance(result, dict):
-            for fname in FORM_TEMPLATES.keys():
-                if fname in result:
-                    validation_result = validate_response(result[fname], FORM_TEMPLATES[fname])
-                    output["result_filled"][fname] = validation_result["result_filled"]
-                    output["key_missing"][fname] = validation_result["key_missing"]
-                else:
-                    output["key_missing"][fname] = list(FORM_TEMPLATES[fname].keys())
-                    output["result_filled"][fname] = FORM_TEMPLATES[fname].copy()
-
-        return output
-
-    except Exception as e:
-        return {
-            "result_filled": {},
-            "key_missing": {},
-            "error": f"Unexpected error: {str(e)}"
-        }
