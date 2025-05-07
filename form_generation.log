@@ -1670,3 +1670,5 @@ INFO:mainapp.main_brain:Validation for vba-21-4138-are.pdf: Filled=33 fields, Mi
 INFO:mainapp.main_brain:Validation for VBA-21-526EZ-ARE.pdf: Filled=160 fields, Missing=121 fields
 INFO:mainapp.main_brain:Validation for VBA-21-0966-ARE.pdf: Filled=61 fields, Missing=34 fields
 INFO:httpx:HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:django.utils.autoreload:/home/vai/Desktop/ron_Veterans-Benefits-Navigato/mainapp/main_brain.py changed, reloading.
+INFO:django.utils.autoreload:/home/vai/Desktop/ron_Veterans-Benefits-Navigato/mainapp/main_brain.py changed, reloading.
