@@ -345,9 +345,10 @@ def submit_form_api(request):
         # print("Received data:", data)
         
         generate_ai_form = generate_full_va_form(data)
-        print("Generated form:", generate_ai_form)
-        
-        generate_pdf(generate_ai_form)
+        # print("Generated form:", generate_ai_form)
+        print("result", generate_ai_form["result_filled"])
+       
+        generate_pdf(generate_ai_form["result_filled"])
         
         
         

@@ -237,6 +237,7 @@ def generate_full_va_form(form_data, retries=3):
                 }
 
             result = json.loads(raw_response)
+            print(raw_response)
             
             logger.info("Parsed JSON: %s", json.dumps(result, indent=2)[:500])
 

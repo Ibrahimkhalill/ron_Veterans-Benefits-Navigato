@@ -1,4 +1,5 @@
-
+```json
+{
   "vba-21-0781-are.pdf": {
     "Veterans_Service_Members_First_Name[0]": "Md.",
     "VAFileNumber[0]": "No Value",
@@ -11,7 +12,7 @@
     "Year[0]": "No Value",
     "FirstThreeNumbers[0]": "321",
     "LastFourNumbers[0]": "7890",
-    "AreaCode[0]": "No Value",
+    "AreaCode[0]": "654",
     "Combat_Traumatic_Events[0]": "No Value",
     "Personal_Traumatic_Events_Not_Involving_Military_Sexual_Trauma[0]": "No Value",
     "Personal_Traumatic_Events_Involving_Military_Sexual_Trauma[0]": "No Value",
@@ -70,7 +71,8 @@
     "Date_Last_VAF_21_22_Or_21_22A_Submitted_Month[0]": "No Value",
     "Date_Day[0]": "No Value",
     "Date_Year[0]": "No Value",
-    "Accreditation_Number[0]": "No Value"
+    "Accreditation_Number[0]": "No Value",
+    "F[0]": "No Value"
   },
   "vba-21-4138-are.pdf": {
     "TelephoneNumber_LastFourNumbers[0]": "7890",
@@ -94,7 +96,7 @@
     "MailingAddress_City[0]": "San Diego",
     "MailingAddress_ApartmentOrUnitNumber[0]": "12B",
     "MailingAddress_NumberAndStreet[0]": "1234 Freedom Blvd",
-    "REMARKS[0]": "Veteran reports chronic sinusitis and prostrating migraines, likely related to toxin exposure during service.",
+    "REMARKS[0]": "Veteran reports chronic sinus congestion and facial pressure, worsens with dust. Episodes of prostrating migraines have increased in frequency since deployment, impacting ability to work.",
     "Digital_Signature[0]": "No Value",
     "Date_Signed_Year[0]": "No Value",
     "Date_Signed_Month[0]": "No Value",
@@ -102,7 +104,8 @@
     "SocialSecurityNumber_LastFourNumbers[1]": "No Value",
     "SocialSecurityNumber_SecondTwoNumbers[1]": "No Value",
     "SocialSecurityNumber_FirstThreeNumbers[1]": "No Value",
-    "REMARKS[1]": "Additional medical records and buddy statements are available to support the claim."
+    "REMARKS[1]": "Veteran has been exposed to various toxins including asbestos, mustard gas, and jet fuel. Heavy exposure during field ops and airfield duty. Additional details provided include exposure to burn pit smoke and diesel exhaust.",
+    "form1[0]": "No Value"
   },
   "VBA-21-526EZ-ARE.pdf": {
     "VA_File_Number[0]": "No Value",
@@ -127,26 +130,27 @@
     "Ending_Date_Month[0]": "12",
     "Ending_Date_Day[0]": "20",
     "Ending_Date_Year[0]": "2024",
-    "Daytime_Phone_Number_Area_Code[0]": "321",
-    "Telephone_Middle_Three_Numbers[0]": "654",
+    "Daytime_Phone_Number_Area_Code[0]": "654",
+    "Telephone_Middle_Three_Numbers[0]": "321",
     "Telephone_Last_Four_Numbers[0]": "7890",
-    "FULLY_DEVELOPED_CLAIM_FDC_PROGRAM[0]": "Selected",
+    "FULLY_DEVELOPED_CLAIM_FDC_PROGRAM[0]": "No Value",
     "International_Telephone_Number_If_Applicable[0]": "+8801555555555",
     "List_Other_Locations_Where_You_Served[0]": "Iraq, Saudi Arabia, Kuwait",
     "ASBESTOS[0]": "Selected",
     "SHAD_Shipboard_Hazard_And_Defense[0]": "Unselected",
     "Contaminated_Water_At_Camp_Lejeune[0]": "Selected",
     "Mustard_Gas[0]": "Selected",
+    "OTHER_Specify[2]": "Lead-based paint, Solvents",
     "Military_Occupational_Specialty_MOS_Related_Toxin[0]": "Selected",
-    "Radiation[0]": "Selected",
     "Provide_Additional_Dates_And_Locations_Of_Potential_Exposure[0]": "2020-04 to 2020-11 – Burn pit exposure near Camp Buehring, Kuwait, 2018-06 to 2018-09 – Radiation exposure while stationed at radar base",
+    "Radiation[0]": "Selected",
     "CURRENTDISABILITY[0]": "Prostrating Migraines",
-    "CURRENTDISABILITY[1]": "Chronic Sinusitis",
     "Specify_Type_Of_Exposure_Event_Or_Injury[0]": "Prostrating Migraines",
-    "Specify_Type_Of_Exposure_Event_Or_Injury[1]": "Chronic Sinusitis",
     "ExplainHowDisabilityRelatesToEvent_Exposure_Injury[0]": "Exposure to intense heat and jet fuel fumes triggered migraine episodes",
-    "ExplainHowDisabilityRelatesToEvent_Exposure_Injury[1]": "Continuous exposure to burn pits and desert dust caused chronic sinus inflammation",
     "Date_Disability_Began_Or_Worsened[0]": "2020-06-10",
+    "CURRENTDISABILITY[1]": "Chronic Sinusitis",
+    "Specify_Type_Of_Exposure_Event_Or_Injury[1]": "Chronic Sinusitis",
+    "ExplainHowDisabilityRelatesToEvent_Exposure_Injury[1]": "Continuous exposure to burn pits and desert dust caused chronic sinus inflammation",
     "Date_Disability_Began_Or_Worsened[1]": "2019-11-01"
   },
   "VBA-21-0966-ARE.pdf": {
@@ -171,7 +175,7 @@
     "Telephone_Number_FirstThreeNumbers[0]": "321",
     "EMAIL_ADDRESS[0]": "dummy.veteran@example.com",
     "EMAIL_ADDRESS[1]": "ibrahimalt@example.com",
-    "CheckBox1[0]": "Selected",
+    "CheckBox1[0]": "No Value",
     "ClaimantsLastName[0]": "No Value",
     "ClaimantsMiddleInitial1[0]": "No Value",
     "ClaimantsFirstName[0]": "No Value",
@@ -189,24 +193,27 @@
     "Mailing_Address_City[0]": "San Diego",
     "Mailing_Address_ApartmentOrUnitNumber[1]": "12B",
     "Mailing_Address_NumberAndStreet[1]": "1234 Freedom Blvd",
-    "ClaimantsInternational_Phone_Number[0]": "No Value",
-    "Telephone_Number_LastFourNumbers[1]": "No Value",
-    "Telephone_Number_SecondThreeNumbers[1]": "No Value",
-    "Telephone_Number_FirstThreeNumbers[1]": "No Value",
-    "ClaimantsEMAIL_ADDRESS[0]": "No Value",
-    "ClaimantsEMAIL_ADDRESS[1]": "No Value",
+    "ClaimantsInternational_Phone_Number[0]": "+8801555555555",
+    "Telephone_Number_LastFourNumbers[1]": "7890",
+    "Telephone_Number_SecondThreeNumbers[1]": "654",
+    "Telephone_Number_FirstThreeNumbers[1]": "321",
+    "ClaimantsEMAIL_ADDRESS[0]": "dummy.veteran@example.com",
+    "ClaimantsEMAIL_ADDRESS[1]": "ibrahimalt@example.com",
     "CheckBox1[1]": "No Value",
     "DOB_Month[1]": "No Value",
     "DOB_Day[1]": "No Value",
     "DOB_Year[1]": "No Value",
     "RadioButtonList[2]": "No Value",
+    "Page_1[0]": "No Value",
     "PENSION[0]": "No Value",
-    "COMPENSATION[0]": "Selected",
+    "COMPENSATION[0]": "No Value",
     "SURVIVORS_PENSION_AND_OR_DEPENDENCY_AND_INDEMNITY_COMPENSATION_DIC[0]": "No Value",
     "Date_Signed_Year[0]": "No Value",
     "Date_Signed_Day[0]": "No Value",
     "Date_Signed_Month[0]": "No Value",
     "Name_Of_Attorney_Agent_Or_Veterans_Service_Organization_VS[0]": "No Value",
-    "Digital_Signature[0]": "No Value"
+    "Digital_Signature[0]": "No Value",
+    "F[0]": "No Value"
   }
 }
+```
