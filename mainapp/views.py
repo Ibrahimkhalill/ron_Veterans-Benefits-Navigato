@@ -111,7 +111,7 @@ def generate_notation(form_data):
         # Call OpenAI's GPT model
         response = client.chat.completions.create(model="gpt-4",
         messages=[
-             {"role": "system", "content": "You are a summarizer assistant that only summarizes VA forms and Write a VA narration for a veteran"},
+             {"role": "system", "content": "You are a summary writer. Write a VA narration for a veteran"},
             {"role": "user", "content": prompt}
         ],
         )
