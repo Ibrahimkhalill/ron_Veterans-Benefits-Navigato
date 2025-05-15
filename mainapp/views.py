@@ -98,27 +98,14 @@ from django.conf import settings
 from openai import OpenAI
 import os
 from dotenv import load_dotenv
-from mainapp.main_brain import generate_full_va_form
+from mainapp.main_brain import generate_full_va_form, generate_notation
 
 load_dotenv()
 
 client = OpenAI(api_key=os.getenv("OPENAI_SUMMARY_API_KEY"))  # Load your OpenAI API key from environment variables
 
 
-def generate_notation(form_data):
-    prompt = f"Create a summary report for the following VA form data:\n{form_data}"
-    try:
-        # Call OpenAI's GPT model
-        response = client.chat.completions.create(model="gpt-4",
-        messages=[
-             {"role": "system", "content": "You are a summary writer. Write a VA narration for a veteran"},
-            {"role": "user", "content": prompt}
-        ],
-        )
-        # Extract and return the assistant's response
-        return response.choices[0].message.content.strip()
-    except Exception as e:
-        return f"An error occurred: {e}"
+
 
 
 
