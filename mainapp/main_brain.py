@@ -307,7 +307,7 @@ def generate_full_va_form(form_data, retries=3):
         
         
 def generate_notation(form_data):
-    prompt = f"Create a summary report for the following VA form data:\n{form_data}"
+    prompt = f"Create a naration for the following VA form data:\n{form_data}"
     try:
         # Call OpenAI's GPT model
         response = client.chat.completions.create(model="gpt-4",
